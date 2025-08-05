@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use alloy::primitives::Address;
 use serde::{Deserialize, Serialize};
 
-use crate::Leverage;
+use crate::{BasicOrderInfo, Leverage, UserStateResponse};
 
 #[derive(Deserialize, Clone, Debug)]
 pub struct Trade {
@@ -282,7 +282,31 @@ pub struct NotificationData {
 #[derive(Deserialize, Clone, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct WebData2Data {
+    pub clearinghouse_state: UserStateResponse,
+    pub open_orders: Vec<OpenOrders>,
+    pub server_time: u64,
     pub user: Address,
+}
+
+#[derive(Deserialize, Clone, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct OpenOrders {
+    pub coin: String,
+    pub side: String,
+    pub limit_px: String,
+    pub sz: String,
+    pub oid: u64,
+    pub timestamp: u64,
+    pub trigger_condition: String,
+    pub is_trigger: bool,
+    pub trigger_px: String,
+    pub children: Vec<OpenOrders>,
+    pub is_position_tpsl: bool,
+    pub reduce_only: bool,
+    pub order_type: String,
+    pub orig_sz: String,
+    pub tif: Option<String>,
+    pub cloid: Option<String>,
 }
 
 #[derive(Deserialize, Clone, Debug)]
