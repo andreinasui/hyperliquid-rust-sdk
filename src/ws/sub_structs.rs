@@ -128,6 +128,8 @@ pub struct BasicOrder {
     pub limit_px: String,
     pub sz: String,
     pub oid: u64,
+    #[serde(default)]
+    pub reduce_only: bool,
     pub timestamp: u64,
     pub orig_sz: String,
     pub cloid: Option<String>,
