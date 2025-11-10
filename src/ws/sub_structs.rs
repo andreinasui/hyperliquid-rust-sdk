@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use alloy::primitives::Address;
 use serde::{Deserialize, Serialize};
 
-use crate::{BasicOrderInfo, Leverage, UserStateResponse};
+use crate::{Leverage, UserStateResponse};
 
 #[derive(Deserialize, Clone, Debug)]
 pub struct Trade {
